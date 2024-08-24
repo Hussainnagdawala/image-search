@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import { LoadImages, SearchImages, Categorymain } from "./components/api";
 import "./App.css";
 import Col from "react-bootstrap/Col";
-import cover from "./images/cover.png"
+import cover from "./images/cover.png";
 import Category from "./components/Category";
 import Row from "react-bootstrap/Row";
 import Navbardb from "./components/Navbardb";
@@ -14,10 +14,9 @@ import { useState } from "react";
 function App() {
   const data = LoadImages();
   // console.log(data);
-  const [query, setQuery] = useState([]);
+  const [query, setQuery] = useState("");
   const [search, setSearch] = useState([]);
   const [toggle, setToggle] = useState("true");
-  const searchdata = SearchImages(query);
   // console.log(query);
   let backgdata = data.map((items) => items.urls.raw);
   console.log(backgdata);
@@ -25,6 +24,7 @@ function App() {
     if (query.length <= 0) {
       setToggle("true");
     } else {
+      const searchdata = SearchImages(query);
       setSearch(searchdata);
       setToggle("false");
     }
@@ -33,15 +33,17 @@ function App() {
     <div className="App">
       <div className="container text-center">
         <Category />
-        <div className = "inputbox" >
+        <div className="inputbox">
           <input
             type="text"
             onChange={(event) => setQuery(event.target.value)}
-            className = "homeinput"
+            className="homeinput"
             placeholder="Search Images"
           />
           <div className=""></div>
-          <button onClick={searchQuery} className="btn me-3 homesearchbtn">search</button>
+          <button onClick={searchQuery} className="btn me-3 homesearchbtn">
+            search
+          </button>
         </div>
         {/* <BackgroundSlider
           images={[

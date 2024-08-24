@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom";
 
 const Category = () => {
   const category123 = Categorymain();
-  const navigate = useNavigate()
-  console.log(category123);
+  const navigate = useNavigate();
   const categoryfun = (db) => {
     console.log(db);
-    navigate(`/singleCategory/${db}`)
+    navigate(`/singleCategory/${db}`);
   };
   return (
     <>
       {category123.map((items, index) => {
         return (
           <Button
+            key={items.id}
             variant="outline-secondary"
             className="me-3"
             onClick={() => {
